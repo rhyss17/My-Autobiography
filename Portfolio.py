@@ -1,13 +1,15 @@
+from pathlib import Path
 import streamlit as st
 from PIL import Image
 
-
 st.set_page_config(page_title="My Autobiography and Portfolio", layout="wide")
 
-home_logo = Image.open("C:\\Users\\Rhyss\\Documents\\School Works\\CSIT341\\home.png")
-portfolio_logo = Image.open("C:\\Users\\Rhyss\\Documents\\School Works\\CSIT341\\portfolio.png")
-resume_logo = Image.open("C:\\Users\\Rhyss\\Documents\\School Works\\CSIT341\\resume.png")
-contact_logo = Image.open("C:\\Users\\Rhyss\\Documents\\School Works\\CSIT341\\contacts.png")
+base_path = Path(__file__).parent  # Gets the directory where the script is located
+
+home_logo = Image.open(base_path / "home.png")
+portfolio_logo = Image.open(base_path / "portfolio.png")
+resume_logo = Image.open(base_path / "resume.png")
+contact_logo = Image.open(base_path / "contacts.png")
 
 if 'page' not in st.session_state:
     st.session_state.page = "Home"
@@ -44,7 +46,7 @@ if page == "Home":
     problem-solving and continuous learning. My journey into the world of Information Technology has been one of exploration, challenges and growth, shaping me into who I am today.
     """)
 
-    display_image("C:\\Users\\Rhyss\\Documents\\School Works\\CSIT341\\rhyss.jpg", "This is me!")
+    display_image(base_path / "rhyss.jpg", "This is me!")
 
     st.subheader("Early Life")
     st.write("I was born and raised in Laspiñas City, where I developed an early interest in computers and technology. From a young age, I was fascinated by how things worked, often taking apart gadgets and trying to understand their inner workings. This curiosity naturally led me to pursue IT as my field of study..")
@@ -53,7 +55,6 @@ if page == "Home":
     st.subheader("Hobbies & Interests")
     st.write("My Hobbies are watching anime, playing online games like dota2, mobile legends, and open world games.")
 
-
 elif page == "Portfolio":
     st.title("My Portfolio")
     st.write("Here is our capstone projects I have worked on.")
@@ -61,14 +62,12 @@ elif page == "Portfolio":
     st.write("- It uses React and MUI")
     st.subheader("[Backend](https://github.com/reeyyyxd/CIMP_BackEnd.git)")
     st.write("- It uses Springboot")
-   
-
 
 elif page == "Resume":
     st.title("Resume")
     st.write("Download my resume by clicking the button below.")
     
-    with open("C:\\Users\\Rhyss\\Documents\\School Works\\CSIT341\\Almeda_Resume.pdf", "rb") as file:
+    with open(base_path / "Almeda_Resume.pdf", "rb") as file:
         btn = st.download_button(
             label="Download Resume",
             data=file,
@@ -78,8 +77,6 @@ elif page == "Resume":
     
     st.subheader("Education")
     st.write("Bachelor of Information Technology from Cebu Institute of Technology University.")
-    
-
 
 elif page == "Contact":
     st.title("Contact Me")
